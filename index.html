@@ -40,21 +40,14 @@
 <h2>
 <a id="the-crux" class="anchor" href="#the-crux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The Crux</h2>
 
-<ul>
-<li><p>We introduce a message passing framework in Generative Adversarial Networks whereby the generations are conditioned on the message it receives from the analysis of the other generator.</p></li>
-<li><p>We introduce an Objective where the Generators compete with each other to get better scores for its generations from the Discriminator apart from just maximally fooling the discriminator.</p></li>
-<li><p>We introduce an Objective where the Generators co-operate and encourage the other generator to get better scores for its generations from the Discriminator apart from just maximally fooling the discriminator.</p></li>
-<li><p>We show for the first time two Generators generating images conditioned on totally different noise distributions.</p></li>
-</ul> 
-
-<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/Imagent2x2.jpg" width="700px"></p>
-
 <p>Why to employ Multiple Generators?
 <ul>
-<li><p>As we can see from the 4 randomly sampled images from Imagenet the variations in the image samples is staggering.</p></li>
+<li><p>As we can see from the 4 randomly sampled images from Imagenet below, the variations in the image samples is staggering.</p></li>
 <li><p>As we have seen previously that single GANs (DCGAN) have experienced great success in modeling restricted domains of images such as Celebrity Faces exceptionally well and the motivation is to distribute the tasks of the generators so that they can master disjoint modes of the data distribution.</p></li>
 </ul>
 </p>
+
+<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/Imagent2x2.jpg" width="700px"></p>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/gan_architecture.png" width="700px"></p>
 
@@ -122,15 +115,6 @@
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/dcgan_faces_compete.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/dcgan_faces_classifying.png" width="350px"></p>
 
 <p>The left figure corresponds to competing objective. Here the first generator generates as expected by the DC-GAN, while the second generator generates with high detailing of the faces and exaggerated facial features, and the third generator generates images with sketch like quality with an artistic touch. The right figure corresponds to generator identification objective. Here, the first generator is generating faces as the normal DC-GAN architecture would. The second generator is generating faces like oil-paintings, while the third generator seems like it is generating images with coarse strokes without much focus on the background</p> 
-
-
-<h2>
-<a id="interesting-differences-in-generations-by-the-2-generators" class="anchor" href="#interesting-differences-in-generations-by-the-2-generators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interesting Differences in Generations by the two Generators</h2>
-
-<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MPM-GAN/master/images/G1_DifferentNoiseMessageConditioned.png" width="700px" height="75px"></p>
-
-<p>Generations of Generator 1 with uniform(-1,1) noise distribution with conditioned message passing. It captures detailed facial expressions.</p>
-
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/arnabgho/MADGAN"  target="_blank">Multi-Agent Diverse Generative Adversarial Networks</a> is maintained by <a href="https://github.com/arnabgho"  target="_blank">arnabgho</a>.</span>
