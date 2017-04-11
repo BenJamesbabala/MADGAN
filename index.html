@@ -45,7 +45,7 @@
 <p><b>Why to employ Multiple Generators?</b>
 <ul>
 <li><p>As we can see from the 4 randomly sampled images from Imagenet below, the variations in the image samples is staggering.</p></li>
-<li><p>As we have seen previously that single GANs (DCGAN) have experienced great success in modeling restricted domains of images such as Celebrity Faces exceptionally well and the motivation is to distribute the tasks of the generators so that they can master disjoint modes of the data distribution.</p></li>
+<li><p>As we have seen previously that single GANs (DCGAN) have experienced great success in modeling restricted domains of images such as celebrity faces and our motivation is to distribute the tasks of the generators so that they can master disjoint modes of the data distribution.</p></li>
 </ul>
 </p>
 
@@ -55,14 +55,14 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/gan_architecture.png" width="700px"></p>
 
-<p>In GANs the training signal for the Generator comes from the Discriminator and hence the high density modes are able to attract the gradients from the Discriminator much more than the lower density mode. Hence the generation manifold isn’t able to master low density modes well.</p>  
+<p>In GANs the training signal for the Generator comes from the Discriminator. Hence the gradients from the Discriminator are attracted more by high density modes than the lower density modes. As shown in figure below, the generation manifold isn’t able to master low density modes well.</p>  
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/generated_mode.png" width="700px"></p>
 
 <p><b>Problems with Naive Modeling of Multiple Generators:</b>
 <ul>
 <li><p>There is nothing to stop the different generators from learning the same parts of the data distribution manifold.</p></li>
-<li><p>Parameters would explode if the generators share no information</p></li>
+<li><p>Parameters would explode if the generators share no information.</p></li>
 </ul></p>
 
 <hr>
@@ -72,20 +72,20 @@
 <p><b>The architecture.</b>
 <ul>
 <li><p>To ensure that the Generators are pushed towards distinct areas of the distribution manifold, we use Diversity Promoting Objectives such as Generator Identification based Objective and Competing Objective.</p></li> 
-<li><p>To avoid the problem of exploding parameters becoming large we share the parameters between the Generators except the last layer.</p></li>
+<li><p>To avoid the problem of exploding parameters we share the parameters between the Generators except the last layer.</p></li>
 </ul>
 </p>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/generated_multimodes.png" width="700px"></p>
 
-<p>As shown in the figure even if the Generation Manifolds of the Generators are close together then our formulation can master low density modes by diversity enforcing objectives.</p>
+<p>As shown in the figure above, even if the generation manifolds of the Generators G1 and G2 are close together, our formulation can master low density modes by diversity enforcing objectives.</p>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/competing_objective_architecture.png" width="700px"></p>
 
 <p><b>Model architecture with competing objective.</b>
 <ul>
-  <li><p>If we think about the Discriminator output in traditional GANs it is like a "Score of How real an image is".</p></li>
-  <li><p>The intuition behind the Competing Objective is that the Generators are competing among themselves to get better scores for its generations than all the other generators and also generate different kinds of generations than what the other generators are generating.</p></li>
+  <li><p>Discriminator output in traditional GANs score how real an image is.</p></li>
+  <li><p>Competing Objective is forcing the generators to generate different kinds of images besides being real looking.</p></li>
 </ul></p>     
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/generator_identification_architecture.png" width="700px"></p>
@@ -93,15 +93,15 @@
 <p><b>Model architecture with Generator identification based objective.</b>
 <ul>
   <li><p>Intuitively, the Discriminator has knowledge of the data distribution and we leverage that information to push the different generators towards disjoint modes.</p></li>
-  <li><p>We change the game a bit and ask the discriminator to predict whether it is a real sample or fake and if it's fake then which Generator produced the particular fake.</p></li>
-  <li><p>Intuitively, to succeed in this task, since the gradients of the Generators come from the Discriminator it has to learn to push the different generators towards different kinds of modes so that its task of identifying which generator a particular fake came from becomes easy.</p></li>
+  <li><p>We change the game a bit and ask the discriminator to predict not only whether an image is real or fake but also if it's fake then which Generator produced it.</p></li>
+  <li><p>Intuitively, to succeed in this task, since the gradients of the Generators come from the Discriminator it has to learn to push the different generators towards different kinds of modes.</p></li>
 </ul></p>  
 
 <hr>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_input.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_gan.png" width="350px"></p>
 
-<p>To show the efficacy of our method in toy datasets we have 18 Gaussians arranged in 3 clusters and from one cluster less points were sampled to emulate the mode density imbalance situation. GAN (on the top-right) collapses all the modes and is not able to recover the data distribution while GAN with Batch Normalization (on the bottom-left) misses out the cluster from which less samples were sampled.
+<p>To show the efficacy of our method in toy datasets, we have 18 Gaussians arranged in 3 clusters and from one cluster less points were sampled to emulate the mode density imbalance situation. GAN (on the top-right) collapses all the modes and is not able to recover the data distribution while GAN with Batch Normalization (on the bottom-left) misses out the cluster from which less samples were sampled.
 </p>     
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_gan_bn.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_our.png" width="350px"></p>
@@ -110,11 +110,9 @@
 
 <hr>
 
-<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_compete_sum_score_5_p.png" width="700px"></p>
+<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_compete_sum_score_5_p.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_classifying_5_p.png" width="350px"></p>
 
-<p>The figure above is for competing objective while below one is for generator identification objective. Diverse generations for 'sketch-bag to real-bag' generation task. The first column in each figure represents the input. The remaining three columns show the diverse outputs of different generators. It is evident from it that different generators are able to produce very diverse results capturing different colors (blue, green, black etc), textures (leather, fabric, plastic etc), design patterns, among others.</p>  
-
-<p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_classifying_5_p.png" width="700px"></p>
+<p>The figure on top left is for competing objective while the top right one is for generator identification objective. Diverse generations for 'sketch-bag to real-bag' generation task. The first column in each figure represents the input. The remaining three columns show the diverse outputs of different generators. It is evident from it that different generators are able to produce very diverse results capturing different colors (blue, green, black etc), textures (leather, fabric, plastic etc), design patterns, among others.</p>  
 
 <hr>
 
