@@ -59,10 +59,10 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/generated_mode.png" width="700px"></p>
 
-<p><b>Problems with Naive Modeling of Multiple Generators:</b>
+<p><b>Problems with naive modeling of multiple Generators:</b>
 <ul>
-<li><p>There is nothing to stop the different generators from learning the same parts of the data distribution manifold.</p></li>
-<li><p>Parameters would explode if the generators share no information.</p></li>
+<li><p>There is nothing to stop the different Generators from learning the same parts of the data distribution manifold.</p></li>
+<li><p>Parameters would explode if the Generators share no information.</p></li>
 </ul></p>
 
 <hr>
@@ -71,7 +71,7 @@
 
 <p><b>The architecture.</b>
 <ul>
-<li><p>To ensure that the Generators are pushed towards distinct areas of the distribution manifold, we use Diversity Promoting Objectives such as Generator Identification based Objective and Competing Objective.</p></li> 
+<li><p>To ensure that the Generators are pushed towards distinct areas of the distribution manifold, we use diversity promoting objectives such as Generator Identification based Objective and Competing Objective.</p></li> 
 <li><p>To avoid the problem of exploding parameters we share the parameters between the Generators except the last layer.</p></li>
 </ul>
 </p>
@@ -82,7 +82,7 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/competing_objective_architecture.png" width="700px"></p>
 
-<p><b>Model architecture with competing objective.</b>
+<p><b>Model architecture with Competing Objective.</b>
 <ul>
   <li><p>Discriminator output in traditional GANs score how real an image is.</p></li>
   <li><p>Competing Objective is forcing the generators to generate different kinds of images besides being real looking.</p></li>
@@ -90,11 +90,11 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/generator_identification_architecture.png" width="700px"></p>
 
-<p><b>Model architecture with Generator identification based objective.</b>
+<p><b>Model architecture with Generator Identification based Objective.</b>
 <ul>
-  <li><p>Intuitively, the Discriminator has knowledge of the data distribution and we leverage that information to push the different generators towards disjoint modes.</p></li>
-  <li><p>We change the game a bit and ask the discriminator to predict not only whether an image is real or fake but also if it's fake then which Generator produced it.</p></li>
-  <li><p>Intuitively, to succeed in this task, since the gradients of the Generators come from the Discriminator it has to learn to push the different generators towards different kinds of modes.</p></li>
+  <li><p>Intuitively, the Discriminator has knowledge of the data distribution and we leverage that information to push the different Generators towards disjoint modes.</p></li>
+  <li><p>We change the game a bit and ask the Discriminator to predict not only whether an image is real or fake but also if it's fake then which Generator produced it.</p></li>
+  <li><p>Intuitively, to succeed in this task, since the gradients of the Generators come from the Discriminator it has to learn to push the different Generators towards different kinds of modes.</p></li>
 </ul></p>  
 
 <hr>
@@ -106,19 +106,20 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_gan_bn.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/toy_our.png" width="350px"></p>
 
-<p>Our model (on the top-right) is able to capture most of the modes and as we can see from the different colors the different generators master disjoint modes of the data distribution.</p>    
+<p>Our model (on the top-right) is able to capture most of the modes and as we can see from the different colors the different Generators master disjoint modes of the data distribution.</p>    
 
 <hr>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_compete_sum_score_5_p.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/day_classifying_5_p.png" width="350px"></p>
 
-<p>The figure on top left is for competing objective while the top right one is for generator identification objective. Diverse generations for 'sketch-bag to real-bag' generation task. The first column in each figure represents the input. The remaining three columns show the diverse outputs of different generators. It is evident from it that different generators are able to produce very diverse results capturing different colors (blue, green, black etc), textures (leather, fabric, plastic etc), design patterns, among others.</p>  
+<p>The figure top left is for Competing Objective while on top right is for Generator Identification based Objective. Diverse generations for 'night to day' image generation task. First column in each figure represents the input. The remaining three columns show the diverse outputs of different Generators. It is evident from that different Generators are able to produce very diverse results capturing different lighting conditions, different sky patterns (cloudy vs clear sky), different weather conditions (winter, summer, rain), different landscapes, among many other minute yet useful cues.</p>    
+
 
 <hr>
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/bags_compete_5_p.png" width="700px"></p>
 
-<p>The figure above is for competing objective while below one is for generator identification objective. Diverse generations for 'night to day' image generation task. First column in each figure represents the input. The remaining three columns show the diverse outputs of different generators. It is evident from that different generators are able to produce very diverse results capturing different lighting conditions, different sky patterns (cloudy vs clear sky), different weather conditions (winter, summer, rain), different landscapes, among many other minute yet useful cues.</p>    
+<p>The figure on top is for Competing Objective while the bottom one is for Generator Identification based Objective. Diverse generations for 'sketch-bag to real-bag' generation task. The first column in each figure represents the input. The remaining three columns show the diverse outputs of different Generators. It is evident from it that different Generators are able to produce very diverse results capturing different colors (blue, green, black etc), textures (leather, fabric, plastic etc), design patterns, among others.</p>  
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/bags_classifying_5_p.png" width="700px"></p>
 
@@ -126,7 +127,7 @@
 
 <p style="text-align:center;"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/dcgan_faces_compete.png" width="350px" align="left"><img src="https://raw.githubusercontent.com/arnabgho/MADGAN/master/images/dcgan_faces_classifying.png" width="350px"></p>
 
-<p>The left figure corresponds to competing objective. Here the first generator generates as expected by the DC-GAN, while the second generator generates with high detailing of the faces and exaggerated facial features, and the third generator generates images with sketch like quality with an artistic touch. The right figure corresponds to generator identification objective. Here, the first generator is generating faces as the normal DC-GAN architecture would. The second generator is generating faces like oil-paintings, while the third generator seems like it is generating images with coarse strokes without much focus on the background</p> 
+<p>The left figure corresponds to Competing Objective. Here the first Generator generates as expected by the DC-GAN, while the second Generator generates with high detailing of the faces and exaggerated facial features, and the third Generator generates images with sketch like quality with an artistic touch. The right figure corresponds to Generator Identification based Objective. Here, the first Generator is generating faces as the normal DC-GAN architecture would. The second Generator is generating faces like oil-paintings, while the third Generator seems to be generating images with coarse strokes without much focus on the background</p> 
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/arnabgho/MADGAN"  target="_blank">Multi-Agent Diverse Generative Adversarial Networks</a> is maintained by <a href="https://github.com/arnabgho"  target="_blank">arnabgho</a>.</span>
